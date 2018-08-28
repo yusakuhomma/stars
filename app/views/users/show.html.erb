@@ -2,4 +2,39 @@
   <div class="name text-center">
     <h1><%= @user.name %></h1>
   </div>
+  <div>
+    所属：<%= @user.department.name %>
+  </div>
+  <div>
+    メールアドレス：<%= @user.email %>
+  </div>
+  <div>
+    内線番号：<%= @user.extension_number %>
+  </div>
+    <div>
+    ★：<%= @user.haveskills.where(assessment:1).count %>:
+    <% @user.haveskills.where(assessment:1).each do |have| %>
+    <%= have.skill.name %>
+    <% end %>
+  </div>
+  <div>
+    ○：<%= @user.haveskills.where(assessment:2).count %>:
+    <% @user.haveskills.where(assessment:2).each do |have| %>
+    <%= have.skill.name %>
+    <% end %>
+    
+  </div>
+  <div>
+    △：<%= @user.haveskills.where(assessment:3).count %>:
+    <% @user.haveskills.where(assessment:3).each do |have| %>
+    <%= have.skill.name %>
+    <% end %>
+    
+  </div>
+  <div>
+    ×：<%= @user.haveskills.where(assessment:4).count %>:
+    <% @user.haveskills.where(assessment:4).each do |have| %>
+    <%= have.skill.name %>
+    <% end %>
+  </div>
 </div>

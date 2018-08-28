@@ -1,0 +1,28 @@
+<h1>スキル一覧</h1>
+
+<% if @categories.any? %>
+  <table class="table table-striped">
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          
+            
+              <table class="table table-striped">
+                <% category.skills.each do |skill| %>
+                <tbody>
+                      <tr>
+                        <td><%= link_to skill.name, skill_path(skill.id) %></td>
+                      </tr>
+                </tbody>
+                <% end %>
+              </table>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
+

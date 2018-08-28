@@ -1,0 +1,32 @@
+<h1><%= @skill.name %></h1>
+<div>
+  カテゴリ：<%= @skill.category.name %>
+</div>
+<div>
+  作成者：<%= @skill.user.name %>
+</div>
+<div>
+  ★：<%= @skill.haveskills.where(assessment:1).count %>：
+  <% @skill.haveskills.where(assessment:1).each do |have| %>
+  <%= have.user.name %>
+  <% end %>
+  
+</div>
+<div>
+  ○：<%= @skill.haveskills.where(assessment:2).count %>：
+  <% @skill.haveskills.where(assessment:2).each do |have| %>
+  <%= have.user.name %>
+  <% end %>
+</div>
+<div>
+  △：<%= @skill.haveskills.where(assessment:3).count %>：
+  <% @skill.haveskills.where(assessment:3).each do |have| %>
+  <%= have.user.name %>
+  <% end %>
+</div>
+<div>
+  ×：<%= @skill.haveskills.where(assessment:4).count %>：
+  <% @skill.haveskills.where(assessment:4).each do |have| %>
+  <%= have.user.name %>
+  <% end %>
+</div>
