@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
   
+  
+ # def _navbar
+  #  @skills = Skill.pluck(:id)
+   # @haveskills  = Haveskill.where(user_id: current_user.id).pluck(:skill_id)
+   # @yet = @skills - @haveskills
+  #  @yet_skills = Skill.find(@yet)
+  #end
+  
   private
 
   def require_user_logged_in
@@ -10,4 +18,5 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
 end

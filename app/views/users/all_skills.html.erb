@@ -1,0 +1,38 @@
+<h1 class="text-center">マイスキル登録</h1>
+
+<ul class="nav nav-pills col-xs-offset-2 col-xs-4">
+	<li role="presentation"><%= link_to '未登録スキル',yet_skills_user_path(current_user) %></li>
+	<li role="presentation" class="active"><a href="#">全スキル</a></li>
+</ul>
+
+<% if @categories.any? %>
+<% @categories.each do |category| %>
+<div class="panel-group col-xs-offset-2 col-xs-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <%= category.name %>
+      </h4>
+    </div>
+
+    
+      <ul class="list-group">
+        <% category.skills.each do |skill| %>
+        <li class="list-group-item">
+          <table class="table-condensed">
+            <tbody>
+              <tr>
+                <td class="col-xs-7"><%= link_to skill.name, skill_path(skill.id) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <% end %>
+      </ul>
+      
+
+    
+  </div>
+</div>
+<% end %>
+<% end %>

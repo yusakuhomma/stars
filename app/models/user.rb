@@ -8,5 +8,8 @@ class User < ApplicationRecord
   
   belongs_to :department
   has_many :skills
+  
   has_many :haveskills
+  has_many :all_skills,through: :haveskills,source: :skill 
+  has_many :yet_skills,through: :haveskills,source: :skill 
 end

@@ -1,28 +1,39 @@
-<h1>スキル一覧</h1>
+<h1 class="text-center">みんなのスキル</h1>
+
+
 
 <% if @categories.any? %>
-  <table class="table table-striped">
-    <tbody>
-      <% @categories.each do |category| %>
-        <tr>
-          <td><%= category.name %></td>
-          
-            
-              <table class="table table-striped">
-                <% category.skills.each do |skill| %>
-                <tbody>
-                      <tr>
-                        <td><%= link_to skill.name, skill_path(skill.id) %></td>
-                      </tr>
-                </tbody>
-                <% end %>
-              </table>
-          
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<% @categories.each do |category| %>
+<div class="panel-group col-xs-offset-2 col-xs-8">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= category.id %>"><%= category.name %>▼</a>
+      </h4>
+    </div>
+
+    <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
+      <ul class="list-group">
+        <% category.skills.each do |skill| %>
+        <li class="list-group-item">
+          <table class="table-condensed">
+            <tbody>
+              <tr>
+                <td class="col-xs-7"><%= link_to skill.name, skill_path(skill.id) %></td>
+                <th class="col-xs-1 table-bordered text-center">★：<%= skill.haveskills.where(assessment:1).count %></th>
+                <th class="col-xs-1 table-bordered text-center">○：<%= skill.haveskills.where(assessment:2).count %></th>
+                <th class="col-xs-1 table-bordered text-center">△：<%= skill.haveskills.where(assessment:3).count %></th>
+                <th class="col-xs-1 table-bordered text-center">×：<%= skill.haveskills.where(assessment:4).count %></th>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <% end %>
+      </ul>
+      </div>
+
+    
+  </div>
+</div>
 <% end %>
-
-
-
+<% end %>

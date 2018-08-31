@@ -1,40 +1,70 @@
 <div class="user-profile">
-  <div class="name text-center">
+  <div class="name text-left">
     <h1><%= @user.name %></h1>
   </div>
   <div>
-    所属：<%= @user.department.name %>
-  </div>
-  <div>
-    メールアドレス：<%= @user.email %>
-  </div>
-  <div>
-    内線番号：<%= @user.extension_number %>
-  </div>
-    <div>
-    ★：<%= @user.haveskills.where(assessment:1).count %>:
-    <% @user.haveskills.where(assessment:1).each do |have| %>
-    <%= have.skill.name %>
-    <% end %>
-  </div>
-  <div>
-    ○：<%= @user.haveskills.where(assessment:2).count %>:
-    <% @user.haveskills.where(assessment:2).each do |have| %>
-    <%= have.skill.name %>
-    <% end %>
+    <table class="table table-bordered">
+      <tr>
+        <td class="col-xs-3">所属</td>
+        <td ><%= @user.department.name %></td>
+      </tr>
+      
+      <tr>
+        <td class="col-xs-3">メールアドレス</td>
+        <td><%= @user.email %></td>
+      </tr>
+      
+      <tr>
+        <td class="col-xs-3">内線番号</td>
+        <td><%= @user.extension_number %></td>
+      </tr>
+      
     
-  </div>
-  <div>
-    △：<%= @user.haveskills.where(assessment:3).count %>:
-    <% @user.haveskills.where(assessment:3).each do |have| %>
-    <%= have.skill.name %>
-    <% end %>
+    </table>
+
+    <div class="text-left">★：<%= @user.haveskills.where(assessment:1).count %></div>
+      <table class="table table-bordered">
+        <% @user.haveskills.where(assessment:1).each do |have| %>
+        <tr>
+          <td class="col-xs-3"><%= have.skill.category.name %></td>
+          <td><%= have.skill.name %></td>
+        </tr>
+        <% end %>
+      </table>
+      
+      
+    <div class="text-left">○：<%= @user.haveskills.where(assessment:2).count %></div>
+    <table class="table table-bordered">
+      <% @user.haveskills.where(assessment:2).each do |have| %>
+      <tr>
+        <td class="col-xs-3"><%= have.skill.category.name %></td>
+        <td><%= have.skill.name %></td>
+      </tr>    
+      <% end %>
+    </table>
+
+    <div class="text-left">△：<%= @user.haveskills.where(assessment:3).count %></div>
+    <table class="table table-bordered">
+      <% @user.haveskills.where(assessment:3).each do |have| %>
+      <tr>
+        <td class="col-xs-3"><%= have.skill.category.name %></td>
+        <td><%= have.skill.name %></td>
+      </tr>
+      <% end %>
+    </table>
     
-  </div>
-  <div>
-    ×：<%= @user.haveskills.where(assessment:4).count %>:
-    <% @user.haveskills.where(assessment:4).each do |have| %>
-    <%= have.skill.name %>
-    <% end %>
+
+    <div class="text-left">×：<%= @user.haveskills.where(assessment:4).count %></div>
+    <table class="table table-bordered">
+      <% @user.haveskills.where(assessment:4).each do |have| %>
+      <tr>
+        <td class="col-xs-3"><%= have.skill.category.name %></td>
+        <td><%= have.skill.name %></td>
+      </tr>
+      <% end %> 
+    </table>
+    
+
+
   </div>
 </div>

@@ -6,6 +6,16 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
-  resources :users
+  
+
+  
+  resources :users do
+    member do
+    get :all_skills
+    get :yet_skills
+    get :set_skill
+    
+    end
+  end
   resources :skills
 end
