@@ -20,9 +20,13 @@
                 <%= link_to '新規スキル追加',new_skill_path, class:"nav-sub-fontsize" %>
             </li>
             
-            <li>
+            <li class="list-inline">
+             
                 <%= link_to 'マイスキル',yet_skills_user_path(current_user), class:"nav-sub-fontsize" %>
+                <%= render 'users/yetbadge' %>
+                
             </li>
+
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle nav-sub-fontsize" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -43,6 +47,7 @@
             <li><%= link_to '新規登録', signup_path, class:"nav-sub-fontsize" %></li>
           <% end %>
         </ul>
+        
       </div>
     </div>
   </nav>

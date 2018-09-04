@@ -1,12 +1,14 @@
 <h1 class="text-center">マイスキル登録</h1>
+<br>
 
-<ul class="nav nav-pills col-xs-offset-2 col-xs-4">
+<ul class="nav nav-pills col-xs-offset-5 col-xs-4">
 	<li role="presentation" class="active"><a href="#">未登録スキル</a></li>
 	<li role="presentation"><%= link_to '全スキル',all_skills_user_path(current_user) %></li>
 </ul>
 
+
 <div class="panel-group col-xs-offset-2 col-xs-8">
-<div class="panel panel-default">
+<div class="panel panel-primary">
 <% if @yet_skills.any? %>
 <% if @categories.any? %>
 <% @categories.each do |category| %>
@@ -16,7 +18,7 @@
         <%= category.name %>
       </h4>
     </div>
-
+<% c_map = ["", "☆", "◯", "△", "×"] %>
     
       <ul class="list-group">
           <% @yet_skills.each do |skill| %>
@@ -28,10 +30,10 @@
                 <td class="col-xs-9"><%= link_to skill.name, skill_path(skill.id) %></td>
                 <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-info"><%= link_to "★", set_skill_user_path(skill: skill.id, assessment: 1) %></button>
-                            <button type="button" class="btn btn-success"><%= link_to "●", set_skill_user_path(skill: skill.id, assessment: 2) %></button>
-                            <button type="button" class="btn btn-warning"><%= link_to "△", set_skill_user_path(skill: skill.id, assessment: 3) %></button>
-                            <button type="button" class="btn btn-danger"><%= link_to "×", set_skill_user_path(skill: skill.id, assessment: 4) %></button>
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-default' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-default' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-default' %>
                           </div>
                 </td>
               </tr>

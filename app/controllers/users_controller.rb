@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    
   end
   
   def new
@@ -27,6 +28,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @categories = Category.order(created_at: :desc)
     @skills = Skill.order(created_at: :desc)
+
+    
   end
 
   def yet_skills
@@ -41,12 +44,29 @@ class UsersController < ApplicationController
   def set_skill
     skill = params[:skill]
     assessment = params[:assessment]
-    skillset = current_user.haveskills.build(skill_id: skill, assessment: assessment)
-    if (skillset.save)
-          redirect_back(fallback_location: root_path)
+
+    
+    skillset = current_user.haveskills.find_by(skill_id: skill)
+    if (skillset == nil)
+      
+        skillset = current_user.haveskills.build(skill_id: skill, assessment: assessment)
+        if (skillset.save)
+              redirect_back(fallback_location: root_path)
+              return;
+        else
+          flash.now[:danger] = 'スキルの登録に失敗しました。'
+              redirect_back(fallback_location: root_path)
+              return;
+        end
     else
-      flash.now[:danger] = 'スキルの登録に失敗しました。'
-          redirect_back(fallback_location: root_path)
+      if (skillset.update(skill_id: skill, assessment: assessment))
+        redirect_back(fallback_location: root_path)
+        return;
+      else
+        flash.now[:danger] = 'スキルの登録に失敗しました。'
+        redirect_back(fallback_location: root_path)
+        return;
+      end
     end
   end
   

@@ -42,3 +42,12 @@ color: #ffffff;
 color: #ffffff;
 background-color: transparent;
 }
+
+.badge-red{
+  background-color: red;
+}
+
+body {
+background-color: lightcyan;
+
+}

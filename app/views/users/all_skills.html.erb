@@ -1,6 +1,9 @@
-<h1 class="text-center">マイスキル登録</h1>
+                
 
-<ul class="nav nav-pills col-xs-offset-2 col-xs-4">
+<h1 class="text-center">マイスキル登録</h1>
+<br>
+
+<ul class="nav nav-pills col-xs-offset-5 col-xs-4">
 	<li role="presentation"><%= link_to '未登録スキル',yet_skills_user_path(current_user) %></li>
 	<li role="presentation" class="active"><a href="#">全スキル</a></li>
 </ul>
@@ -8,21 +11,94 @@
 <% if @categories.any? %>
 <% @categories.each do |category| %>
 <div class="panel-group col-xs-offset-2 col-xs-8">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading">
       <h4 class="panel-title">
         <%= category.name %>
       </h4>
     </div>
 
-    
+    <% c_map = ["", "☆", "◯", "△", "×"] %>
+   
       <ul class="list-group">
         <% category.skills.each do |skill| %>
         <li class="list-group-item">
           <table class="table-condensed">
             <tbody>
               <tr>
-                <td class="col-xs-7"><%= link_to skill.name, skill_path(skill.id) %></td>
+                <td class="col-xs-9"><%= link_to skill.name, skill_path(skill.id) %></td>
+                
+                
+         
+                <% if skill.haveskills.find_by(user_id: current_user.id).present? %>      
+                <% if skill.haveskills.find_by(user_id: current_user.id).assessment == 1 %>
+                
+                <td>
+                          <div class="btn-group">
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-primary' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-default' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-default' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-default' %>
+                          </div>
+                </td>
+                
+               <% elsif skill.haveskills.find_by(user_id: current_user.id).assessment == 2 %>
+                <td>
+                          <div class="btn-group">
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-primary' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-default' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-default' %>
+                          </div>
+                </td>
+                
+                <% elsif skill.haveskills.find_by(user_id: current_user.id).assessment == 3 %>
+                <td>
+                          <div class="btn-group">
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-default' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-primary' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-default' %>
+                          </div>
+                </td>
+                
+                 <% elsif skill.haveskills.find_by(user_id: current_user.id).assessment == 4 %>
+                <td>
+                          <div class="btn-group">
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-default' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-default' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-primary' %>
+                          </div>
+                </td>
+                
+                <% else %>
+                <td>
+                          <div class="btn-group">
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-default' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-default' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-default' %>
+                          </div>
+                </td>
+                
+                <% end %>
+                
+                <% else %>
+                
+                <td>
+                          <div class="btn-group">
+                            <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
+                            <%= link_to c_map[2], set_skill_user_path(skill: skill.id, assessment: 2),class: 'btn btn-default' %>
+                            <%= link_to c_map[3], set_skill_user_path(skill: skill.id, assessment: 3),class: 'btn btn-default' %>
+                            <%= link_to c_map[4], set_skill_user_path(skill: skill.id, assessment: 4),class: 'btn btn-default' %>
+                          </div>
+                </td>
+                <% end %>
+                
+                
+                
+                
               </tr>
             </tbody>
           </table>

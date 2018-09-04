@@ -1,32 +1,66 @@
-<h1><%= @skill.name %></h1>
-<div>
-  カテゴリ：<%= @skill.category.name %>
+<div class="panel-group col-xs-offset-2 col-xs-8">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title text-center">
+      <%= @skill.name %>
+      </h4>
+    </div>
+    <div class="panel-body">
+
+     
+
+<h1 class="text-center">☆：<%= @skill.haveskills.where(assessment:1).count %>人</h1>
+
+       <div>
+         
+        <table class="table table-bordered col-xs-10 text-center">
+            <tbody>
+              <% @skill.haveskills.where(assessment:1).each do |have| %>
+              <tr>
+                <td class="col-xs-3">
+                <%= link_to have.user.name, user_path(have.user_id) %>
+                </td>
+                <td class="col-xs-4">
+                <%= have.user.department.name %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+            <br><br>  <br><br> <br><br>  <br><br><br><br>  
+          </div>
+          
+          <h2 class="text-center">◯：<%= @skill.haveskills.where(assessment:2).count %>人</h2>
+
+        <div>
+          
+        <table class="table table-bordered col-xs-10 text-center">
+            <tbody>
+              <% @skill.haveskills.where(assessment:2).each do |have| %>
+              <tr>
+                <td class="col-xs-3">
+                <%= link_to have.user.name, user_path(have.user_id) %>
+                </td>
+                <td class="col-xs-4">
+                <%= have.user.department.name %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+            <br><br>  <br><br> <br><br>  <br><br>
+        </div>
+        <h3 class="text-center">△：<%= @skill.haveskills.where(assessment:3).count %>人</h3>
+          
+        <h3 class="text-center">×：<%= @skill.haveskills.where(assessment:4).count %>人</h3>
+        <br>
+        <br>
+        <p class = "text-center">※△と×のユーザは表示されません</p>
+        </div>
+        <div class="panel-footer text-right">
+          カテゴリ：<%= @skill.category.name %><br>
+          作成者：<%= @skill.user.name %>
+        </div>
+
 </div>
-<div>
-  作成者：<%= @skill.user.name %>
-</div>
-<div>
-  ★：<%= @skill.haveskills.where(assessment:1).count %>：
-  <% @skill.haveskills.where(assessment:1).each do |have| %>
-  <%= have.user.name %>/<%= have.user.department.name %>
-  <% end %>
-  
-</div>
-<div>
-  ○：<%= @skill.haveskills.where(assessment:2).count %>：
-  <% @skill.haveskills.where(assessment:2).each do |have| %>
-  <%= have.user.name %>/<%= have.user.department.name %>
-  <% end %>
-</div>
-<div>
-  △：<%= @skill.haveskills.where(assessment:3).count %>：
-  <% @skill.haveskills.where(assessment:3).each do |have| %>
-  <%= have.user.name %>/<%= have.user.department.name %>
-  <% end %>
-</div>
-<div>
-  ×：<%= @skill.haveskills.where(assessment:4).count %>：
-  <% @skill.haveskills.where(assessment:4).each do |have| %>
-  <%= have.user.name %>/<%= have.user.department.name %>
-  <% end %>
 </div>

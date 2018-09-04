@@ -1,11 +1,9 @@
-
-
 <h1 class="text-center">スキル検索</h1>
 
 <br>
   <%= form_tag(search_path, method: :get) do %>
   <div class="form-inline col-xs-offset-5">
-    <%= text_field_tag :search,'',class:'form-control',placeholder:'スキル名' %>
+    <%= text_field_tag :search,'',class:'form-control',placeholder: @name %>
     <%= submit_tag '検索',class: 'btn btn-primary' %>
 
   </div>
@@ -15,8 +13,7 @@
 
 
 
-
-<% if @categories.any? %>
+<% if @results.any? %>
 <% @categories.each do |category| %>
 <div class="panel-group col-xs-offset-2 col-xs-8">
   <div class="panel panel-primary">
@@ -28,21 +25,22 @@
 
     <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
       <ul class="list-group">
-        <% category.skills.each do |skill| %>
+        <% @results.each do |skill| %>
+        <% if skill.category_id == category.id %>
         <li class="list-group-item">
           <table class="table-condensed">
             <tbody>
               <tr>
                 <td class="col-xs-7"><%= link_to skill.name, skill_path(skill.id) %></td>
-                <th class="col-xs-1 table-bordered text-center">☆：<%= skill.haveskills.where(assessment:1).count %></th>
-                <th class="col-xs-1 table-bordered text-center">◯：<%= skill.haveskills.where(assessment:2).count %></th>
+                <th class="col-xs-1 table-bordered text-center">★：<%= skill.haveskills.where(assessment:1).count %></th>
+                <th class="col-xs-1 table-bordered text-center">○：<%= skill.haveskills.where(assessment:2).count %></th>
                 <th class="col-xs-1 table-bordered text-center">△：<%= skill.haveskills.where(assessment:3).count %></th>
                 <th class="col-xs-1 table-bordered text-center">×：<%= skill.haveskills.where(assessment:4).count %></th>
               </tr>
-              
             </tbody>
           </table>
         </li>
+        <% end %>
         <% end %>
       </ul>
       </div>
@@ -51,9 +49,6 @@
   </div>
 </div>
 <% end %>
+<% else %>
+該当するスキルはありません
 <% end %>
-
-
-
-
-
