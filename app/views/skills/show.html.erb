@@ -17,7 +17,7 @@
          
         <table class="table table-bordered col-xs-10 text-center">
             <tbody>
-              <% @skill.haveskills.where(assessment:1).each do |have| %>
+              <% @skill.haveskills.where(assessment:1).joins(user: :department).order("departments.display").each do |have| %>
               <tr>
                 <td class="col-xs-4">
                 <%= have.user.department.name %>
@@ -41,7 +41,7 @@
           
         <table class="table table-bordered col-xs-10 text-center">
             <tbody>
-              <% @skill.haveskills.where(assessment:2).each do |have| %>
+              <% @skill.haveskills.where(assessment:2).joins(user: :department).order("departments.display").each do |have| %>
               <tr>
                 
                 <td class="col-xs-4">

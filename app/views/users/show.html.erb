@@ -67,7 +67,7 @@
        
         <table class="table table-bordered text-center">
             <tbody>
-              <% @user.haveskills.where(assessment:1).joins(:skill).includes(:skill).order("skills.category_id").each do |have| %>
+              <% @user.haveskills.where(assessment:1).joins(skill: :category).order("categories.display").each do |have| %>
               <tr>
                 <td class="col-xs-3">
                 <%= have.skill.category.name %>
@@ -90,7 +90,7 @@
           
         <table class="table table-bordered text-center">
             <tbody>
-               <% @user.haveskills.where(assessment:2).joins(:skill).includes(:skill).order("skills.category_id").each do |have| %>
+               <% @user.haveskills.where(assessment:2).joins(skill: :category).order("categories.display").each do |have| %>
               <tr>
                 <td class="col-xs-3">
                <%= have.skill.category.name %>
@@ -115,7 +115,7 @@
           
         <table class="table table-bordered text-center">
             <tbody>
-               <% @user.haveskills.where(assessment:3).joins(:skill).includes(:skill).order("skills.category_id").each do |have| %>
+               <% @user.haveskills.where(assessment:3).joins(skill: :category).order("categories.display").each do |have| %>
               <tr>
                 <td class="col-xs-3">
                <%= have.skill.category.name %>
@@ -137,7 +137,7 @@
           
         <table class="table table-bordered text-center">
             <tbody>
-               <% @user.haveskills.where(assessment:4).joins(:skill).includes(:skill).order("skills.category_id").each do |have| %>
+               <% @user.haveskills.where(assessment:4).joins(skill: :category).order("categories.display").each do |have| %>
               <tr>
                 <td class="col-xs-3">
                <%= have.skill.category.name %>
