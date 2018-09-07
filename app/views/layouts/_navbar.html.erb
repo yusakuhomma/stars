@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-default navbar-static-top">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -9,6 +9,8 @@
           <span class="icon-bar"></span>
         </button>
 <a class="navbar-brand nav-main-fontsize" href="/skills">STARS</a>
+
+
 
             
       </div>
@@ -22,9 +24,8 @@
             
             <li class="list-inline">
              
-                <%= link_to 'マイスキル',yet_skills_user_path(current_user), class:"nav-sub-fontsize" %>
-                <%= render 'users/yetbadge' %>
-                
+                <%= link_to yet_skills_user_path(current_user), class:"nav-sub-fontsize" do %> マイスキル <span class="badge badge-red"><%= current_user.yet_skills.count %></span> <% end %>
+
             </li>
 
 

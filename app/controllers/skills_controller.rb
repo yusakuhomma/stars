@@ -29,7 +29,6 @@ class SkillsController < ApplicationController
   def search 
   @name = params[:search]
   @results = Skill.where('name LIKE ?', "%#{params[:search]}%")
-  
   @categories = Category.order(created_at: :desc)
   @skills = Skill.order(created_at: :desc)
   end

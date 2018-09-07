@@ -47,7 +47,43 @@ background-color: transparent;
   background-color: red;
 }
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
 background-color: lightcyan;
-
+padding-top: 70px;
+position: absolute;  /* またはfixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
 }
+
+
+.assessment{
+
+
+
+  margin-top:150px;
+  z-index: -1;
+  
+}
+
+.font-origin{
+  font-size: 16px;
+  
+}
+
+.table-origin{
+  width: 100%;
+}
+
+p.box {
+   border-bottom: 1px dashed gray;
+}
+
+

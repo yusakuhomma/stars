@@ -1,7 +1,14 @@
-                
+   <%= render 'assessment' %>             
 
 <h1 class="text-center">マイスキル登録</h1>
 <br>
+
+
+
+
+
+
+
 
 <ul class="nav nav-pills col-xs-offset-5 col-xs-4">
 	<li role="presentation"><%= link_to '未登録スキル',yet_skills_user_path(current_user) %></li>
@@ -23,10 +30,10 @@
       <ul class="list-group">
         <% category.skills.each do |skill| %>
         <li class="list-group-item">
-          <table class="table-condensed">
+          <table class="table-condensed table-origin">
             <tbody>
               <tr>
-                <td class="col-xs-9"><%= link_to skill.name, skill_path(skill.id) %></td>
+                <td class="col-xs-9 font-origin">　<%= link_to skill.name, skill_path(skill.id) %></td>
                 
                 
          
@@ -112,3 +119,11 @@
 </div>
 <% end %>
 <% end %>
+
+
+
+
+
+
+
+

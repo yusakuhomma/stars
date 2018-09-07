@@ -4,26 +4,48 @@
 
 
 <h1 class="text-center"><%= @user.name %></h1>
-<div class="col-xs-offset-2 col-xs-8">
 
-          <table class="table text-center">
+
+<div class="panel-group col-xs-offset-2 col-xs-8">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title text-center">
+      情報
+      </h4>
+    </div>
+    <div class="panel-body">
+<div class="">
+
+          <table class="table text-center ">
             <tbody>
-              <tr>
-                <td class="">所属</td>
-                <td class=""><%= @user.department.name %></td>
+              <tr class="">
+                <td class="col-xs-2">氏名</td>
+                <td class="col-xs-4"><%= @user.name %></td>
+              </tr>
+              <tr class="">
+                <td class="col-xs-2">所属</td>
+                <td class="col-xs-4"><%= @user.department.name %></td>
               </tr>
               
-              <tr>
+              <tr class="">
                 <td class="">メールアドレス</td>
                 <td class=""><%= @user.email %></td>
               </tr>
               
-              <tr>
+              <tr class="">
                 <td class="">内線番号</td>
                 <td class=""><%= @user.extension_number %></td>
               </tr>
             </tbody>
           </table>
+          <% if current_user == @user %>
+          <div class="text-right"><%= link_to 'マイ情報編集',edit_user_path, class:"btn btn-info" %>
+          </div>
+          <% end %>
+          
+     </div>
+     </div>
+     </div>
      </div>
 
 
@@ -32,22 +54,22 @@
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h4 class="panel-title text-center">
-      <%= @user.name %>の評価一覧
+      スキル
       </h4>
     </div>
     <div class="panel-body">
     
      
 
-<h1 class="text-center">☆：<%= @user.haveskills.where(assessment:1).count %></h1>
+<h1 class="text-center col-xs-12">☆：<%= @user.haveskills.where(assessment:1).count %></h1>
 
-       <div>
+       <div class="col-xs-offset-1 col-xs-10">
        
         <table class="table table-bordered text-center">
             <tbody>
               <% @user.haveskills.where(assessment:1).each do |have| %>
               <tr>
-                <td class="col-xs-2">
+                <td class="col-xs-3">
                 <%= have.skill.category.name %>
                 </td>
                 <td class="col-xs-4">
@@ -57,18 +79,20 @@
               <% end %>
             </tbody>
           </table>
-          <br><br>
           </div>
+          <div class="col-xs-12"><p class="box">　</p></div>
           
-          <h2 class="text-center">◯：<%= @user.haveskills.where(assessment:2).count %></h2>
+          
+        <h2 class="text-center col-xs-12">◯：<%= @user.haveskills.where(assessment:2).count %></h2>
 
-        <div>
+        <div class="col-xs-offset-1 col-xs-10">
+            
           
-        <table class="table table-bordered col-xs-10 text-center">
+        <table class="table table-bordered text-center">
             <tbody>
                <% @user.haveskills.where(assessment:2).each do |have| %>
               <tr>
-                <td class="col-xs-2">
+                <td class="col-xs-3">
                <%= have.skill.category.name %>
                 </td>
                 <td class="col-xs-4">
@@ -78,23 +102,22 @@
               <% end %>
             </tbody>
           </table>
-          <br><br>  <br><br>  <br><br>  <br><br>  
         </div>
-  
+  <div class="col-xs-12"><p class="box">　</p></div>
 
 <% if current_user == @user %>
 
 
         
-        <h2 class="text-center">△：<%= @user.haveskills.where(assessment:3).count %></h2>
+        <h2 class="text-center col-xs-12">△：<%= @user.haveskills.where(assessment:3).count %></h2>
 
-        <div>
+        <div class="col-xs-offset-1 col-xs-10">
           
-        <table class="table table-bordered col-xs-10 text-center">
+        <table class="table table-bordered text-center">
             <tbody>
                <% @user.haveskills.where(assessment:3).each do |have| %>
               <tr>
-                <td class="col-xs-2">
+                <td class="col-xs-3">
                <%= have.skill.category.name %>
                 </td>
                 <td class="col-xs-4">
@@ -104,19 +127,19 @@
               <% end %>
             </tbody>
           </table>
-            <br><br>  <br><br>
-        </div>
-        
-        
-        <h2 class="text-center"> ×：<%= @user.haveskills.where(assessment:4).count %></h2>
 
-        <div>
+        </div>
+        <div class="col-xs-12"><p class="box">　</p></div>
+        
+        <h2 class="text-center col-xs-12"> ×：<%= @user.haveskills.where(assessment:4).count %></h2>
+
+        <div class="col-xs-offset-1 col-xs-10">
           
-        <table class="table table-bordered col-xs-10 text-center">
+        <table class="table table-bordered text-center">
             <tbody>
                <% @user.haveskills.where(assessment:4).each do |have| %>
               <tr>
-                <td class="col-xs-2">
+                <td class="col-xs-3">
                <%= have.skill.category.name %>
                 </td>
                 <td class="col-xs-4">
@@ -126,11 +149,12 @@
               <% end %>
             </tbody>
           </table>
-          <br><br>
+
         </div>
+        <div class="col-xs-12"><p class="box">　</p></div>
         
 <% else %>
-<p class = "text-center">※△と×の評価は自身しか確認できません</p>
+<p class = "col-xs-12 text-center">※　△と×の評価は自身のみ確認できます</p>
 <% end %>
     </div>
 </div>

@@ -7,19 +7,22 @@
       
         <div class="panel-heading">新規スキル追加</div>
         <div class="panel-body">
+          <p class="">・ここで登録したスキルは全社員の未登録スキルに追加されます。</p>
+          <p class="">・ふさわしいカテゴリがない場合は、「その他」カテゴリで追加してください。</p>
+          <br>
         <%= form_for(@skill) do |f| %>
-        <div class="form-group">
-          <%= f.label :category_id, 'カテゴリ' %><br>
-          <%= f.collection_select :category_id, Category.all, :id, :name %>
+        <div class="form-group col-xs-offset-1 col-xs-10">
+          <%= f.label :category_id, 'カテゴリ',class:'col-xs-12' %><br>
+          <%= f.collection_select :category_id, Category.all, :id, :name, {}, {class: 'form-control'} %>
         </div>
-          <div class="form-group">
-          <%= f.label :name, 'スキル名' %>
+          <div class="form-group col-xs-offset-1 col-xs-10">
+          <%= f.label :name, 'スキル名',class:'col-xs-12' %>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
         
         <%= hidden_field_tag :user_id, current_user.id %>
         
-        <div class="text-right">
+        <div class="text-right col-xs-offset-1 col-xs-10">
             <%= f.submit '登録する', class: 'btn btn-primary' %>
         </div>
         <% end %>
@@ -27,3 +30,4 @@
     </div>
   </div>
 </div>
+

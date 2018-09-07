@@ -1,3 +1,4 @@
+   <%= render 'assessment' %>   
 <h1 class="text-center">マイスキル登録</h1>
 <br>
 
@@ -7,11 +8,17 @@
 </ul>
 
 
+
+
+
+<% if @yet_skills.any? %>
+<% @categories.each do |category| %>
+
+<% if @yet_skills.where(category_id: category.id).count != 0 %>
+
 <div class="panel-group col-xs-offset-2 col-xs-8">
 <div class="panel panel-primary">
-<% if @yet_skills.any? %>
-<% if @categories.any? %>
-<% @categories.each do |category| %>
+
 
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -24,10 +31,10 @@
           <% @yet_skills.each do |skill| %>
           <% if skill.category_id == category.id %>
         <li class="list-group-item">
-          <table class="table-condensed">
+          <table class="table-condensed table-origin">
             <tbody>
               <tr>
-                <td class="col-xs-9"><%= link_to skill.name, skill_path(skill.id) %></td>
+                <td class="col-xs-9 font-origin">　<%= link_to skill.name, skill_path(skill.id) %></td>
                 <td>
                           <div class="btn-group">
                             <%= link_to c_map[1], set_skill_user_path(skill: skill.id, assessment: 1),class: 'btn btn-default' %>
@@ -45,21 +52,17 @@
       </ul>
       
 
-<% end %>
-<% end %>
-<% else %>
-<ul class="list-group">
-  <li class="list-group-item">
-          <table class="table-condensed">
-            <tbody>
-              <tr>
-<td class="col-xs-7">未登録スキルはありません</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<% end %>
+
 
 </div>
 </div>
+
+<% end %>
+<% end %>
+<% else %>
+
+<p class="text-center">未登録スキルはありません</p>
+
+
+<% end %>
+

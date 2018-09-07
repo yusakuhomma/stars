@@ -11,7 +11,7 @@
   </div>
   <% end %>
 
-<br><br><br>
+<br><br>
 
 
 
@@ -30,14 +30,15 @@
       <ul class="list-group">
         <% category.skills.each do |skill| %>
         <li class="list-group-item">
-          <table class="table-condensed">
+          <table class="table-origin">
             <tbody>
               <tr>
-                <td class="col-xs-7"><%= link_to skill.name, skill_path(skill.id) %></td>
-                <th class="col-xs-1 table-bordered text-center">☆：<%= skill.haveskills.where(assessment:1).count %></th>
-                <th class="col-xs-1 table-bordered text-center">◯：<%= skill.haveskills.where(assessment:2).count %></th>
-                <th class="col-xs-1 table-bordered text-center">△：<%= skill.haveskills.where(assessment:3).count %></th>
-                <th class="col-xs-1 table-bordered text-center">×：<%= skill.haveskills.where(assessment:4).count %></th>
+                <td class="col-xs-8 font-origin"><%= link_to skill.name, skill_path(skill.id) %></td>
+                
+                <th class="col-xs-1 table-bordered text-center">☆<br><%= skill.haveskills.where(assessment:1).count %></th>
+                <th class="col-xs-1 table-bordered text-center">◯<br><%= skill.haveskills.where(assessment:2).count %></th>
+                <th class="col-xs-1 table-bordered text-center">△<br><%= skill.haveskills.where(assessment:3).count %></th>
+                <th class="col-xs-1 table-bordered text-center">×<br><%= skill.haveskills.where(assessment:4).count %></th>
               </tr>
               
             </tbody>
