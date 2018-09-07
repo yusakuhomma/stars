@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def unrequire_user_logged_in
+    if logged_in?
+      redirect_to skills_path
+    end
+  end
 end

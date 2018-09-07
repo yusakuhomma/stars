@@ -1,0 +1,110 @@
+マスターメニュー
+
+<h1>カテゴリー</h1>
+<%= link_to 'カテゴリー追加',new_category_path, class:"btn btn-default" %>
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>display</th>
+  </tr>
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td><%= category.display %></td>
+    <td><%= link_to '編集',edit_category_path(category.id), class:"btn btn-default" %></td>
+    
+
+  </tr>
+  <% end %>
+</table>
+
+
+<h1>所属</h1>
+<%= link_to '所属追加',new_department_path, class:"btn btn-default" %>
+
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>display</th>
+  </tr>
+  <% @departments.each do |department| %>
+  <tr>
+    <td><%= department.id %></td>
+    <td><%= department.name %></td>
+    <td><%= department.display %></td>
+    <td><%= link_to '編集',edit_department_path(department.id), class:"btn btn-default" %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+
+<h1>ユーザー</h1>
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>department</th>
+    <th>extension_number</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.department.id %>(<%= user.department.name %>)</td>
+    <td><%= user.extension_number %></td>
+    <td><%= link_to '編集',edit_user_path(user.id), class:"btn btn-default" %></td>
+
+  </tr>
+  <% end %>
+</table>
+
+
+<h1>スキル</h1>
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>category</th>
+    <th>post_user</th>
+    <th>display</th>
+  </tr>
+  <% @skills.each do |skill| %>
+  <tr>
+    <td><%= skill.id %></td>
+    <td><%= skill.name %></td>
+    <td><%= skill.category_id %>(<%= skill.category.name %>)</td>
+    <td><%= skill.user_id %>(<%= skill.user.name %>)</td>
+    <td><%= skill.display %></td>
+    <td><%= link_to '編集',edit_skill_path(skill.id), class:"btn btn-default" %></td>
+  </tr>
+  <% end %>
+</table>
+
+<h1>所持スキル</h1>
+<%= link_to '所持スキル追加',new_haveskill_path, class:"btn btn-default" %>
+
+
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>assessment</th>
+    <th>user</th>
+    <th>skill</th>
+  </tr>
+  <% @haveskills.each do |haveskill| %>
+  <tr>
+    <td><%= haveskill.id %></td>
+    <td><%= haveskill.assessment %></td>
+    <td><%= haveskill.user_id %>(<%= haveskill.user.name %>)</td>
+    <td><%= haveskill.skill_id %>(<%= haveskill.skill.name %>)</td>
+    <td><%= link_to '編集',edit_haveskill_path(haveskill.id), class:"btn btn-default" %></td>
+
+  </tr>
+  <% end %>
+</table>

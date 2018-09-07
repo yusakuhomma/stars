@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   get 'search', to: 'skills#search'
+  get 'master', to: 'users#master'
 
   
   resources :users do
@@ -18,4 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :skills
+  resources :categories
+  resources :departments
+  resources :haveskills
 end

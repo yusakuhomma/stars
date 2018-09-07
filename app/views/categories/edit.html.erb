@@ -1,0 +1,23 @@
+<%= form_for(@category) do |f| %>
+
+          <div class="form-group">
+            <%= f.label :name, 'カテゴリー名' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :display, '表示順' %>
+            <%= f.text_field :display, class: 'form-control' %>
+          </div>
+
+          
+
+          <div class="text-right">
+            <%= f.submit '登録する', class: 'btn btn-primary' %>
+          </div>
+          
+<% end %>
+
+ <%= link_to "削除", @category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+ 
+ <%= link_to '戻る',master_path, class:"btn btn-default" %>

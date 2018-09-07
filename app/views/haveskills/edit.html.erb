@@ -1,0 +1,30 @@
+<%= form_for(@haveskill) do |f| %>
+
+          <div class="form-group">
+            <%= f.label :assessment, '評価' %>
+            <%= f.text_field :assessment, class: 'form-control' %>
+          </div>
+
+<div class="form-group">
+            <%= f.label :user_id, 'ユーザー' %>
+            <br>
+            <%= f.collection_select :user_id, User.all, :id, :name, {}, {class: 'form-control'} %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :skill_id, 'スキル' %>
+            <br>
+            <%= f.collection_select :skill_id, Skill.all, :id, :name, {}, {class: 'form-control'} %>
+          </div>
+
+
+          
+
+          <div class="text-right">
+            <%= f.submit '登録する', class: 'btn btn-primary' %>
+          </div>
+          
+<% end %>
+
+<%= link_to "削除", @haveskill, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+<%= link_to '戻る',master_path, class:"btn btn-default" %>

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :unrequire_user_logged_in,only: [:new,:create]
+  
   def new
   end
 

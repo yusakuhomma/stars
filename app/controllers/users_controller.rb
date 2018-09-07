@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :all_skills,:edit,:update,:all_skills,:yet_skills,:set_skill]
   before_action :correct_user, only: [:edit,:update,:all_skills, :yet_skills, :set_skill]
-  
+  before_action :unrequire_user_logged_in,only: [:new]
+  before_action :master_user, only: [:master,:destroy]
   
   def show
     @user = User.find(params[:id])
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
   
   def create
@@ -26,10 +27,12 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+    
+    
   end
   
   def update
-        @user = User.find(current_user.id)
+        @user = User.find(params[:id])
         
         if @user.update(edit_params)
           flash[:success] = 'ユーザ情報を更新しました。'
@@ -42,7 +45,7 @@ class UsersController < ApplicationController
   
   def all_skills
     @user = User.find(params[:id])
-    @categories = Category.order(created_at: :desc)
+    @categories = Category.order(display: :asc)
     @skills = Skill.order(created_at: :desc)
 
     
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
     @haveskills  = Haveskill.where(user_id: current_user.id).pluck(:skill_id)
     @yet = @skills - @haveskills
     @yet_skills = Skill.where(id: @yet)
-    @categories = Category.order(created_at: :desc)
+    @categories = Category.order(display: :asc)
   end
   
   def set_skill
@@ -86,6 +89,29 @@ class UsersController < ApplicationController
     end
   end
   
+  
+  def master
+    @categories = Category.all
+    @departments = Department.all
+    @users = User.all
+    @skills = Skill.all
+    @haveskills = Haveskill.all
+    
+
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if @user.skills.count < 1 && @user.haveskills.count < 1
+    @user.destroy
+    flash[:success] = 'ユーザーを削除しました。'
+    redirect_to master_path
+    else
+    flash[:danger] = '他のスキルか所持スキルと紐づいているため削除できません。'
+    redirect_to edit_user_path
+  end
+end
+  
   private
 
   def user_params
@@ -96,13 +122,17 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :department_id, :extension_number)
   end
   
+
+  
   def correct_user
     @user = User.find_by(id: params[:id])
-    unless @user == current_user
+    unless @user == current_user || current_user.id == 2
     flash[:danger] = 'その操作はできません'
-      redirect_to skills_path
+      redirect_to root_url
     end
   end
+  
+  
 end
   
 
